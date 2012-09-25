@@ -19,7 +19,7 @@ Description
 Provides craftable nodes that when placed turn into shapes or structures.
 
 Features:
-- easy to use, no chat commands, just nice easy structures that you can build by crafting and placing nodes
+- easy to use - no chat commands, just nice easy structures that you can build by crafting and placing nodes
 - lightweight - there are no ABMs, the nodes are created using after_place_node() in the node definitions
 - grief-resistant - before nodes deploy a check is run to ensure that only air exists in the new area
 - server friendly - all players can create impressive structures easily
