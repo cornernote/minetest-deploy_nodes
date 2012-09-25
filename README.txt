@@ -3,6 +3,7 @@ Deploy Nodes for Minetest
 ----------------------------------
 
 Copyright (C) 2012 cornernote, Brett O'Donnell <cornernote@gmail.com>
+Home Page: https://sites.google.com/site/cornernote/minetest/deploy-nodes
 Source Code: https://github.com/cornernote/minetest-deploy_nodes
 
 This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version.
