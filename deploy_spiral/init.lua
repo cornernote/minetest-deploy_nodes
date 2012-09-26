@@ -23,11 +23,16 @@ deploy_spiral.deploy =  function(pos,placer,nodename,width,height,spacer)
 	pos.y = math.floor(pos.y+0.5)
 	pos.z = math.floor(pos.z+0.5)
 
+	height = tonumber(height)-1
+	if height < 0 then height = 0 end
+	spacer = tonumber(spacer)+1
+	if spacer < 1 then spacer = 1 end
+
 	-- check for space
 	if deploy_nodes.check_for_space==true then
-		for x=0,width*spacer do
-		for y=0,height do
-		for z=0,width*spacer do
+		for x=width*spacer*-0.5,width*spacer*0.5 do
+		for y=0,height-1 do
+		for z=width*spacer*-0.5,width*spacer*0.5 do
 			if x~=0 or y~=0 or z~=0 then
 				local checkpos = {x=pos.x+x,y=pos.y+y,z=pos.z+z}
 				local checknode = minetest.env:get_node(checkpos).name
@@ -64,16 +69,16 @@ deploy_spiral.deploy =  function(pos,placer,nodename,width,height,spacer)
 	end
 	-- connect the joined parts
 	local spiral = spiralt(width)
-	height = tonumber(height)
-	if height < 1 then height = 1 end
-	spacer = tonumber(spacer)-1
-	if spacer < 1 then spacer = 1 end
 	local node = {name=nodename}
 	local np,lp
 	for y=0,height do
 		lp = nil
 		for _,v in ipairs(spiral) do
-			np = {x=pos.x+v.x*spacer, y=pos.y+y, z=pos.z+v.z*spacer}
+			np = {
+				x=pos.x+v.x*spacer-spacer-width*spacer*0.5, 
+				y=pos.y+y, 
+				z=pos.z+v.z*spacer-spacer-width*spacer*0.5,
+			}
 			if lp~=nil then
 				if lp.x~=np.x then 
 					if lp.x<np.x then 
@@ -114,7 +119,7 @@ deploy_spiral.register = function(label,name,material,texture)
 		tiles = {texture.."^deploy_spiral_small.png"},
 		groups = {dig_immediate=3},
 		after_place_node = function(pos,placer)
-			deploy_spiral.deploy(pos,placer,material,5,1,1)
+			deploy_spiral.deploy(pos,placer,material,3,1,1)
 		end,
 	})
 	minetest.register_craft({
@@ -130,7 +135,7 @@ deploy_spiral.register = function(label,name,material,texture)
 		tiles = {texture.."^deploy_spiral_medium.png"},
 		groups = {dig_immediate=3},
 		after_place_node = function(pos,placer)
-			deploy_spiral.deploy(pos,placer,material,10,3,2)
+			deploy_spiral.deploy(pos,placer,material,6,2,2)
 		end,
 	})
 	minetest.register_craft({
@@ -146,7 +151,7 @@ deploy_spiral.register = function(label,name,material,texture)
 		tiles = {texture.."^deploy_spiral_large.png"},
 		groups = {dig_immediate=3},
 		after_place_node = function(pos,placer)
-			deploy_spiral.deploy(pos,placer,material,20,5,3)
+			deploy_spiral.deploy(pos,placer,material,12,4,3)
 		end,
 	})
 	minetest.register_craft({
