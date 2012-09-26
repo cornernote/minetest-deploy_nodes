@@ -112,6 +112,8 @@ deploy_maze.deploy = function(originpos, placer, material, size, floors)
 	local possible_ways = {}
 	local direction = ""
 	local pos = {x = 0, y = 0, l = 0}
+	local forward = true
+	local dead_end = {}
 	table.insert(moves, {x = pos_x, y = pos_y, l = pos_l})
 	repeat
 		possible_ways = {}
@@ -200,6 +202,7 @@ deploy_maze.deploy = function(originpos, placer, material, size, floors)
 			table.insert(possible_ways, "W") -- twice as possible as U and D
 		end
 		if #possible_ways > 0 then
+			forward = true
 			direction = possible_ways[math.random(# possible_ways)]
 			if direction == "N" then 
 				pos_y = pos_y - 1
@@ -218,13 +221,40 @@ deploy_maze.deploy = function(originpos, placer, material, size, floors)
 			end
 			table.insert(moves, {x = pos_x, y = pos_y, l = pos_l})
 			maze[pos_l][pos_x][pos_y] = false
-		else
+		else -- there is no possible way forward
+			if forward then -- the last step was forward, now back, so we're in a dead end
+				-- mark dead end for possible braid
+				if not maze[pos_l][pos_x - 1][pos_y] then -- dead end to E, only way is W
+					table.insert(dead_end, {x = pos_x, y = pos_y, l = pos_l, dx = 1, dy = 0})
+				elseif not maze[pos_l][pos_x + 1][pos_y] then -- dead end to W, only way is E
+					table.insert(dead_end, {x = pos_x, y = pos_y, l = pos_l, dx = -1, dy = 0})
+				elseif not maze[pos_l][pos_x][pos_y - 1] then -- dead end to S, only way is N
+					table.insert(dead_end, {x = pos_x, y = pos_y, l = pos_l, dx = 0, dy = 1})
+				elseif not maze[pos_l][pos_x][pos_y + 1] then -- dead end to N, only way is S
+					table.insert(dead_end, {x = pos_x, y = pos_y, l = pos_l, dx = 0, dy = -1})
+				end
+				forward = false
+			end
 			pos = table.remove(moves)
 			pos_x = pos.x
 			pos_y = pos.y
 			pos_l = pos.l
 		end
 	until pos_x == start_x and pos_y == start_y
+
+	-- create partial braid maze, about 20%
+	if size > 15 then
+		for _, braid_pos in pairs(dead_end) do
+			-- print(braid_pos.x.."/"..braid_pos.y.."/"..braid_pos.l.." "..braid_pos.dx.."/"..braid_pos.dy)
+			x = braid_pos.x + braid_pos.dx * 2
+			y = braid_pos.y + braid_pos.dy * 2
+			if math.random(5) == 1 and x > 0 and x < maze_size_x - 1 and y > 0 and y < maze_size_y - 1 and not maze[braid_pos.l][x][y] then
+				-- remove wall if behind is corridor with 20% chance
+				maze[braid_pos.l][braid_pos.x + braid_pos.dx][braid_pos.y + braid_pos.dy] = false
+				-- print("removed "..braid_pos.l.."/"..braid_pos.x + braid_pos.dx.."/"..braid_pos.y + braid_pos.dy)
+			end
+		end
+	end
 
 	-- create exit on opposite end of maze and make sure it is reachable
 	local exit_x = maze_size_x - 1 -- exit always on opposite side of maze
