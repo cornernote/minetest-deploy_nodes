@@ -346,9 +346,7 @@ deploy_maze.register = function(label,name,material,texture)
 	minetest.register_craft({
 		output = "deploy_maze:"..name.."_small",
 		recipe = {
-			{material, material, material},
-			{"", material, material},
-			{material, material, ""},
+			{"deploy_maze:blueprint", material, material},
 		},
 	})
 
@@ -364,9 +362,7 @@ deploy_maze.register = function(label,name,material,texture)
 	minetest.register_craft({
 		output = "deploy_maze:"..name.."_medium",
 		recipe = {
-			{"deploy_maze:"..name.."_small", "deploy_maze:"..name.."_small", "deploy_maze:"..name.."_small"},
-			{"", "deploy_maze:"..name.."_small", "deploy_maze:"..name.."_small"},
-			{"deploy_maze:"..name.."_small", "deploy_maze:"..name.."_small", ""},
+			{"deploy_maze:blueprint", "deploy_maze:"..name.."_small", "deploy_maze:"..name.."_small"},
 		},
 	})
 
@@ -382,9 +378,7 @@ deploy_maze.register = function(label,name,material,texture)
 	minetest.register_craft({
 		output = "deploy_maze:"..name.."_large",
 		recipe = {
-			{"deploy_maze:"..name.."_medium", "deploy_maze:"..name.."_medium", "deploy_maze:"..name.."_medium"},
-			{"", "deploy_maze:"..name.."_medium", "deploy_maze:"..name.."_medium"},
-			{"deploy_maze:"..name.."_medium", "deploy_maze:"..name.."_medium", ""},
+			{"deploy_maze:blueprint", "deploy_maze:"..name.."_medium", "deploy_maze:"..name.."_medium"},
 		},
 	})
 
@@ -399,6 +393,19 @@ deploy_maze.register("Cobble","cobble","default:cobble","default_cobble.png")
 deploy_maze.register("Stone","stone","default:stone","default_stone.png")
 deploy_maze.register("Glass","glass","default:glass","default_glass.png")
 
+-- blueprint
+minetest.register_craftitem("deploy_maze:blueprint", {
+	description = "Maze Blueprint",
+	inventory_image = "deploy_maze_blueprint.png",
+})
+minetest.register_craft({
+	output = "deploy_maze:blueprint",
+	recipe = {
+		{"deploy_nodes:blueprint", "deploy_nodes:blueprint", "deploy_nodes:blueprint"},
+		{"", "deploy_nodes:blueprint", "deploy_nodes:blueprint"},
+		{"deploy_nodes:blueprint", "deploy_nodes:blueprint", ""},
+	},
+})
 
 -- log that we started
 minetest.log("action", "[MOD]"..minetest.get_current_modname().." -- loaded from "..minetest.get_modpath(minetest.get_current_modname()))

@@ -16,5 +16,15 @@ deploy_nodes = {}
 -- check for non-air blocks before deploying structure
 deploy_nodes.check_for_space = true
 
+-- blueprint
+minetest.register_craftitem("deploy_nodes:blueprint", {
+	description = "Empty Blueprint",
+	inventory_image = "deploy_nodes_blueprint.png",
+})
+minetest.register_craft({
+	output = "deploy_nodes:blueprint",
+	recipe = {{"default:paper", "default:coal_lump", "default:stick"}},
+})
+
 -- log that we started
 minetest.log("action", "[MOD]"..minetest.get_current_modname().." -- loaded from "..minetest.get_modpath(minetest.get_current_modname()))

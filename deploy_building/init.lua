@@ -109,9 +109,7 @@ minetest.register_node("deploy_building:small", {
 minetest.register_craft({
     output = "deploy_building:small",
     recipe = {
-		{"default:stone", "", "default:stone"},
-		{"default:wood", "default:glass", "default:wood"},
-		{"default:wood", "default:wood", "default:wood"},
+		{"deploy_building:blueprint", "default:wood", "default:stone"},
     },
 })
 
@@ -127,9 +125,7 @@ minetest.register_node("deploy_building:medium", {
 minetest.register_craft({
     output = "deploy_building:medium",
     recipe = {
-		{"default:stone", "", "default:stone"},
-		{"default:wood", "default:glass", "default:wood"},
-		{"deploy_building:small", "deploy_building:small", "deploy_building:small"},
+		{"deploy_building:blueprint", "deploy_building:small", "deploy_building:small"},
     },
 })
 
@@ -145,10 +141,22 @@ minetest.register_node("deploy_building:large", {
 minetest.register_craft({
     output = "deploy_building:large",
     recipe = {
-		{"default:stone", "", "default:stone"},
-		{"default:wood", "default:glass", "default:wood"},
-		{"deploy_building:medium", "deploy_building:medium", "deploy_building:medium"},
+		{"deploy_building:blueprint", "deploy_building:medium", "deploy_building:medium"},
     },
+})
+
+-- blueprint
+minetest.register_craftitem("deploy_building:blueprint", {
+	description = "Building Blueprint",
+	inventory_image = "deploy_building_blueprint.png",
+})
+minetest.register_craft({
+	output = "deploy_building:blueprint",
+	recipe = {
+		{"deploy_nodes:blueprint", "", "deploy_nodes:blueprint"},
+		{"deploy_nodes:blueprint", "deploy_nodes:blueprint", "deploy_nodes:blueprint"},
+		{"deploy_nodes:blueprint", "deploy_nodes:blueprint", "deploy_nodes:blueprint"},
+	},
 })
 
 -- log that we started

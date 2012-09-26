@@ -78,9 +78,7 @@ deploy_sphere.register = function(label,name,material,texture)
 	minetest.register_craft({
 		output = "deploy_sphere:"..name.."_small",
 		recipe = {
-			{"", material, ""},
-			{material, material, material},
-			{"", material, ""},
+			{"deploy_sphere:blueprint", material, material},
 		},
 	})
 
@@ -96,9 +94,7 @@ deploy_sphere.register = function(label,name,material,texture)
 	minetest.register_craft({
 		output = "deploy_sphere:"..name.."_medium",
 		recipe = {
-			{"", "deploy_sphere:"..name.."_small", ""},
-			{"deploy_sphere:"..name.."_small", "deploy_sphere:"..name.."_small", "deploy_sphere:"..name.."_small"},
-			{"", "deploy_sphere:"..name.."_small", ""},
+			{"deploy_sphere:blueprint", "deploy_sphere:"..name.."_small", "deploy_sphere:"..name.."_small"},
 		},
 	})
 
@@ -114,9 +110,7 @@ deploy_sphere.register = function(label,name,material,texture)
 	minetest.register_craft({
 		output = "deploy_sphere:"..name.."_large",
 		recipe = {
-			{"", "deploy_sphere:"..name.."_medium", ""},
-			{"deploy_sphere:"..name.."_medium", "deploy_sphere:"..name.."_medium", "deploy_sphere:"..name.."_medium"},
-			{"", "deploy_sphere:"..name.."_medium", ""},
+			{"deploy_sphere:blueprint", "deploy_sphere:"..name.."_medium", "deploy_sphere:"..name.."_medium"},
 		},
 	})
 
@@ -131,6 +125,20 @@ deploy_sphere.register("Cobble","cobble","default:cobble","default_cobble.png")
 deploy_sphere.register("Stone","stone","default:stone","default_stone.png")
 deploy_sphere.register("Glass","glass","default:glass","default_glass.png")
 
+
+-- blueprint
+minetest.register_craftitem("deploy_sphere:blueprint", {
+	description = "Sphere Blueprint",
+	inventory_image = "deploy_sphere_blueprint.png",
+})
+minetest.register_craft({
+	output = "deploy_sphere:blueprint",
+	recipe = {
+		{"", "deploy_nodes:blueprint", ""},
+		{"deploy_nodes:blueprint", "deploy_nodes:blueprint", "deploy_nodes:blueprint"},
+		{"", "deploy_nodes:blueprint", ""},
+	},
+})
 
 -- log that we started
 minetest.log("action", "[MOD]"..minetest.get_current_modname().." -- loaded from "..minetest.get_modpath(minetest.get_current_modname()))

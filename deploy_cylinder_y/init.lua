@@ -78,9 +78,7 @@ deploy_cylinder_y.register = function(label,name,material,texture)
 	minetest.register_craft({
 		output = "deploy_cylinder_y:"..name.."_small",
 		recipe = {
-			{"", material, ""},
-			{material, "", material},
-			{"", material, ""},
+			{"deploy_cylinder_y:blueprint", material, material},
 		},
 	})
 
@@ -96,9 +94,7 @@ deploy_cylinder_y.register = function(label,name,material,texture)
 	minetest.register_craft({
 		output = "deploy_cylinder_y:"..name.."_medium",
 		recipe = {
-			{"", "deploy_cylinder_y:"..name.."_small", ""},
-			{"deploy_cylinder_y:"..name.."_small", "", "deploy_cylinder_y:"..name.."_small"},
-			{"", "deploy_cylinder_y:"..name.."_small", ""},
+			{"deploy_cylinder_y:blueprint", "deploy_cylinder_y:"..name.."_small", "deploy_cylinder_y:"..name.."_small"},
 		},
 	})
 
@@ -114,9 +110,7 @@ deploy_cylinder_y.register = function(label,name,material,texture)
 	minetest.register_craft({
 		output = "deploy_cylinder_y:"..name.."_large",
 		recipe = {
-			{"", "deploy_cylinder_y:"..name.."_medium", ""},
-			{"deploy_cylinder_y:"..name.."_medium", "", "deploy_cylinder_y:"..name.."_medium"},
-			{"", "deploy_cylinder_y:"..name.."_medium", ""},
+			{"deploy_cylinder_y:blueprint", "deploy_cylinder_y:"..name.."_medium", "deploy_cylinder_y:"..name.."_medium"},
 		},
 	})
 
@@ -131,6 +125,19 @@ deploy_cylinder_y.register("Cobble","cobble","default:cobble","default_cobble.pn
 deploy_cylinder_y.register("Stone","stone","default:stone","default_stone.png")
 deploy_cylinder_y.register("Glass","glass","default:glass","default_glass.png")
 
+-- blueprint
+minetest.register_craftitem("deploy_cylinder_y:blueprint", {
+	description = "Cylinder Y Blueprint",
+	inventory_image = "deploy_cylinder_y_blueprint.png",
+})
+minetest.register_craft({
+	output = "deploy_cylinder_y:blueprint",
+	recipe = {
+		{"", "deploy_nodes:blueprint", ""},
+		{"deploy_nodes:blueprint", "", "deploy_nodes:blueprint"},
+		{"", "deploy_nodes:blueprint", ""},
+	},
+})
 
 -- log that we started
 minetest.log("action", "[MOD]"..minetest.get_current_modname().." -- loaded from "..minetest.get_modpath(minetest.get_current_modname()))
