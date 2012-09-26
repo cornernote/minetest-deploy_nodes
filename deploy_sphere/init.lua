@@ -31,7 +31,7 @@ deploy_sphere.deploy =  function(pos,placer,nodename,radius)
 		for y=-radius,radius do
 		for z=-radius,radius do
 			if x*x+y*y+z*z <= radius * radius + radius then
-				if x~=0 or y~=0 or z~=0 then
+				if x~=0 or y~=radius*-1 or z~=0 then
 					local checkpos = {x=pos.x+x,y=pos.y+y+radius,z=pos.z+z}
 					local checknode = minetest.env:get_node(checkpos).name
 					if checknode~="air" then
