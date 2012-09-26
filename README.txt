@@ -27,42 +27,6 @@ Features:
 
 
 ----------------------------------
-Crafts
-----------------------------------
- 
-Spheres:
-
--M-   M=dirt/wood/brick/cobble/stone/glass
-MMM   make bigger spheres by using small spere as the material
--M-
-
-
-Cylinder Y:
-
--M-  M=dirt/wood/brick/cobble/stone/glass
-M-M  make bigger cylinders by using small cylinders as the material
--M-
-
-
-Mazes:
-
-MMM  M=dirt/wood/brick/cobble/stone/glass
--MM  make bigger mazes by using small mazes as the material
-MM-
-
-
-Buildings:
-
-S-S Small
-WGW S=stone, W=wood, G=glass
-WWW
-
-S-S Medium/Large
-WGW S=stone, W=wood, G=glass
-MMM M=small/medium building
-
-
-----------------------------------
 How To Add New Stuff
 ----------------------------------
 
