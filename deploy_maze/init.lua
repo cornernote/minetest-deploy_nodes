@@ -26,7 +26,7 @@ deploy_maze.deploy = function(originpos, placer, material, size, floors)
 	originpos.z = math.floor(originpos.z+0.5)
 	
 	-- setup some variables
-	math.randomseed(os.time())
+	--math.randomseed(os.time())
 	local min_size = 11
 	local maze_size_x = tonumber(size)
 	if maze_size_x == nil then maze_size_x = 20 end
