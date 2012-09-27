@@ -37,6 +37,7 @@ end
 deploy_building.deploy = function(originpos, placer, size)
 
 	-- load building data
+	math.randomseed(os.time())
 	local files = deploy_building.get_files(size)
 	local filepath = minetest.get_modpath("deploy_building").."/buildings/"..size.."/"..files[math.random(#files)]
 	local file, err = io.open(filepath, "rb")
