@@ -176,7 +176,7 @@ deploy_spiral.register("Glass","glass","default:glass","default_glass.png")
 -- blueprint
 minetest.register_craftitem("deploy_spiral:blueprint", {
 	description = "Spiral Blueprint",
-	inventory_image = "deploy_spiral_blueprint.png",
+	inventory_image = "deploy_nodes_blueprint.png^deploy_spiral_blueprint.png",
 })
 minetest.register_craft({
 	output = "deploy_spiral:blueprint",

@@ -129,7 +129,7 @@ deploy_sphere.register("Glass","glass","default:glass","default_glass.png")
 -- blueprint
 minetest.register_craftitem("deploy_sphere:blueprint", {
 	description = "Sphere Blueprint",
-	inventory_image = "deploy_sphere_blueprint.png",
+	inventory_image = "deploy_nodes_blueprint.png^deploy_sphere_blueprint.png",
 })
 minetest.register_craft({
 	output = "deploy_sphere:blueprint",

@@ -148,7 +148,7 @@ minetest.register_craft({
 -- blueprint
 minetest.register_craftitem("deploy_building:blueprint", {
 	description = "Building Blueprint",
-	inventory_image = "deploy_building_blueprint.png",
+	inventory_image = "deploy_nodes_blueprint.png^deploy_building_blueprint.png",
 })
 minetest.register_craft({
 	output = "deploy_building:blueprint",

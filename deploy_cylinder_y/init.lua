@@ -128,7 +128,7 @@ deploy_cylinder_y.register("Glass","glass","default:glass","default_glass.png")
 -- blueprint
 minetest.register_craftitem("deploy_cylinder_y:blueprint", {
 	description = "Cylinder Y Blueprint",
-	inventory_image = "deploy_cylinder_y_blueprint.png",
+	inventory_image = "deploy_nodes_blueprint.png^deploy_cylinder_y_blueprint.png",
 })
 minetest.register_craft({
 	output = "deploy_cylinder_y:blueprint",

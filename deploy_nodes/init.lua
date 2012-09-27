@@ -14,12 +14,12 @@ MAIN LOADER
 deploy_nodes = {}
 
 -- check for non-air blocks before deploying structure
-deploy_nodes.check_for_space = true
+deploy_nodes.check_for_space = false
 
 -- blueprint
 minetest.register_craftitem("deploy_nodes:blueprint", {
 	description = "Empty Blueprint",
-	inventory_image = "deploy_nodes_blueprint.png",
+	inventory_image = "deploy_nodes_blueprint.png^deploy_nodes_blueprint.png",
 })
 minetest.register_craft({
 	output = "deploy_nodes:blueprint",

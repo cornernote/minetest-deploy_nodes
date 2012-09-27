@@ -248,7 +248,7 @@ deploy_maze.deploy = function(originpos, placer, material, size, floors)
 			-- print(braid_pos.x.."/"..braid_pos.y.."/"..braid_pos.l.." "..braid_pos.dx.."/"..braid_pos.dy)
 			x = braid_pos.x + braid_pos.dx * 2
 			y = braid_pos.y + braid_pos.dy * 2
-			if math.random(5) == 1 and x > 0 and x < maze_size_x - 1 and y > 0 and y < maze_size_y - 1 and not maze[braid_pos.l][x][y] then
+			if math.random(5) == 1 and x > 0 and x < maze_size_x - 1 and y > 0 and y < maze_size_z - 1 and not maze[braid_pos.l][x][y] then
 				-- remove wall if behind is corridor with 20% chance
 				maze[braid_pos.l][braid_pos.x + braid_pos.dx][braid_pos.y + braid_pos.dy] = false
 				-- print("removed "..braid_pos.l.."/"..braid_pos.x + braid_pos.dx.."/"..braid_pos.y + braid_pos.dy)
@@ -426,7 +426,7 @@ deploy_maze.register("Glass","glass","default:glass","default_glass.png")
 -- blueprint
 minetest.register_craftitem("deploy_maze:blueprint", {
 	description = "Maze Blueprint",
-	inventory_image = "deploy_maze_blueprint.png",
+	inventory_image = "deploy_nodes_blueprint.png^deploy_maze_blueprint.png",
 })
 minetest.register_craft({
 	output = "deploy_maze:blueprint",

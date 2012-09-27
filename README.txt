@@ -13,6 +13,10 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
 You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
 
+Textures:
+deploy_nodes_blueprint.png - freeware - http://findicons.com/icon/178409/blueprint
+
+
 ----------------------------------
 Description
 ----------------------------------
@@ -65,7 +69,7 @@ mauvebic - author of multinode which provided code for spheres and cylinders
 Echo - author of maze which provided code for spheres
 neko259 - author of livehouse which inspired building spawning
 VanessaE - contributed buildings
+kddekadenz - contributed buildings
 ACDC - contributed buildings
 Nanuk - contributed buildings
 irksomeduck - contributed buildings
-kddekadenz - contributed buildings
