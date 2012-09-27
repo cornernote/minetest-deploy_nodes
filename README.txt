@@ -64,3 +64,8 @@ Credits
 mauvebic - author of multinode which provided code for spheres and cylinders
 Echo - author of maze which provided code for spheres
 neko259 - author of livehouse which inspired building spawning
+VanessaE - contributed buildings
+ACDC - contributed buildings
+Nanuk - contributed buildings
+irksomeduck - contributed buildings
+kddekadenz - contributed buildings
