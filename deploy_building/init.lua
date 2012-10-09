@@ -17,15 +17,22 @@ BUILDING
 deploy_building = {}
 
 
--- get_files
+-- get_files 
 deploy_building.get_files = function(size)
-	local directory = minetest.get_modpath("deploy_building").."/buildings/"..size
-	local command = 'dir "'..directory..'\\*.we" /b' -- windows
-	if os.getenv('home')~=nil then 
-		command = 'ls -a "'..directory..'/*.we"' -- linux/mac
+	local modpath = minetest.get_modpath("deploy_building")
+	local output
+	if os.getenv('HOME')~=nil then 
+		os.execute('\ls -a "'..modpath..'/buildings/'..size..'/" | grep .we > "'..modpath..'/buildings/'..size..'/_buildings"') -- linux/mac
+		local file, err = io.open(modpath..'/buildings/'..size..'/_buildings', "rb")
+		if err ~= nil then
+			return
+		end
+		output = file:lines()
+	else
+		output = io.popen('dir "'..modpath..'\\buildings\\'..size..'\\*.we" /b'):lines()  -- windows
 	end
-    local i, t, popen = 0, {}, io.popen
-    for filename in popen(command):lines() do
+    local i, t = 0, {}
+    for filename in output do
         i = i + 1
         t[i] = filename
     end
