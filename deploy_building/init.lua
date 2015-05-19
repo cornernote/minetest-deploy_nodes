@@ -22,7 +22,7 @@ deploy_building.get_files = function(size)
 	local modpath = minetest.get_modpath("deploy_building")
 	local output
 	if os.getenv('HOME')~=nil then 
-		os.execute('\ls -a "'..modpath..'/buildings/'..size..'/" | grep .we > "'..modpath..'/buildings/'..size..'/_buildings"') -- linux/mac
+		os.execute('\\ls -a "'..modpath..'/buildings/'..size..'/" | grep .we > "'..modpath..'/buildings/'..size..'/_buildings"') -- linux/mac
 		local file, err = io.open(modpath..'/buildings/'..size..'/_buildings', "rb")
 		if err ~= nil then
 			return
